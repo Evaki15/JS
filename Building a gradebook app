@@ -1,21 +1,35 @@
-// Complete the getAverage function which takes in an array of test scores and returns the average score. You can use a loop to iterate over the scores array and add up all the scores.
-You can use the length property to get the total number of scores.
-
 function getAverage(scores) {
-    let sum = 0;
+  let sum = 0;
 
-    // Iterate over the array using a for loop
-    for (let i = 0; i < scores.length; i++) {
-        sum += scores[i]; // Add each score to the sum
-    }
+  for (const score of scores) {
+    sum += score;
+  }
 
-    // Calculate the average by dividing the sum by the number of scores
-    const average = sum / scores.length;
-
-    // Return the calculated average 
-    return average;
+  return sum / scores.length;
 }
 
-// Test cases
-console.log(getAverage([92, 88, 12, 77, 57, 100, 67, 38, 97, 89])); // Expected output: 71.7
-console.log(getAverage([45, 87, 98, 100, 86, 94, 67, 88, 94, 95])); // Expected output: 85.4
+function getGrade(score) {
+  if (score === 100) {
+    return "A++";
+  } else if (score >= 90) {
+    return "A";
+  } else if (score >= 80) {
+    return "B";
+  } else if (score >= 70) {
+    return "C";
+  } else if (score >= 60) {
+    return "D";
+  } else {
+    return "F";
+  }
+}
+
+function hasPassingGrade(score) {
+  return getGrade(score) !== "F";
+}
+
+function studentMsg(totalScores, studentScore) {
+ if (hasPassingGrade(studentScore) == true) {
+   return "Class average: " + getAverage(totalScores) + "." + "Your grade: " + getGrade(studentScore) + ". You passed the course."
+ } else {return "Class average: " + getAverage(totalScores) + "." + "Your grade: " + getGrade(studentScore) + ". You failed the course."}};
+console.log(studentMsg([92, 88, 12, 77, 57, 100, 67, 38, 97, 89], 37));
